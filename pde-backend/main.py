@@ -31,13 +31,13 @@ async def run_single_turn(message: str, session_id: str) -> str:
 
     try:
         try:
-            session = await session_service.create_session(
+            session = session_service.create_session(
                 app_name=APP_NAME,
                 user_id=USER_ID,
                 session_id=session_id,
             )
         except Exception:
-            session = await session_service.get_session(
+            session = session_service.get_session(
                 app_name=APP_NAME,
                 user_id=USER_ID,
                 session_id=session_id,
