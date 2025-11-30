@@ -28,6 +28,7 @@ class ChatResponse(BaseModel):
 async def run_single_turn(message: str, session_id: str) -> str:
     # minimal version of run_session that returns text instead of printing
     from google.genai import types
+    print("DEBUG: Running FIXED version of run_single_turn (no await on session)")
 
     try:
         try:
