@@ -7,7 +7,9 @@ interface Message {
   sender: "user" | "agent";
   text: string;
 }
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE = (
+  import.meta.env.VITE_API_URL || "http://localhost:8000"
+).replace(/\/$/, "");
 function App() {
   const [sessionId] = useState("web-session-1");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -38,8 +40,7 @@ function App() {
         ...m,
         {
           sender: "agent",
-          text:
-            "[Error: Could not reach the server. Is the backend running on port 8000?]",
+          text: "[Error: Could not reach the server. Is the backend running on port 8000?]",
         },
       ]);
     } finally {
@@ -71,7 +72,6 @@ function App() {
       {/* Top nav bar */}
       <header className="h-12 border-b border-slate-800 bg-[#020b0a] flex items-center">
         <div className="w-full px-4 flex items-center justify-between">
-
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-md bg-emerald-500 flex items-center justify-center text-xs font-semibold text-black">
               PE
@@ -93,10 +93,8 @@ function App() {
         </div>
       </header>
 
-      
       <main className="flex-1 bg-[#020b0a]">
         <div className="w-full h-[calc(100vh-48px)] flex">
-
           {/* Left sidebar */}
           <aside className="hidden md:flex flex-col w-64 border-r border-slate-800 bg-[#040f0e]">
             <div className="px-4 py-4 border-b border-slate-800">
@@ -132,7 +130,6 @@ function App() {
               <span className="font-mono text-slate-500">{sessionId}</span>
             </div>
 
-            
             <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4 space-y-4 bg-[#020b0a]">
               {messages.length === 0 && (
                 <div className="text-sm text-slate-400 max-w-xl space-y-2">
@@ -146,8 +143,8 @@ function App() {
                     planning agents as needed.
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    Tip: Start with a concrete goal or problem, like
-                    “I want to win a hackathon in 3 months”.
+                    Tip: Start with a concrete goal or problem, like “I want to
+                    win a hackathon in 3 months”.
                   </p>
                 </div>
               )}
@@ -183,10 +180,8 @@ function App() {
               <div ref={chatEndRef} />
             </div>
 
-            
             <div className="border-t border-slate-800 bg-[#040f0e] px-4 py-3">
               <div className="w-full flex gap-2 items-end">
-
                 <textarea
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
