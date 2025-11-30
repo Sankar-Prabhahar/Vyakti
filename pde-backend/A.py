@@ -137,7 +137,7 @@ print("✅ Configuration and services initialized!")
 
 # --- AGENT 1: PathMatch ---
 pathmatch_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="PathMatch",
     instruction="""You are PathMatch, an expert career counselor and interest discovery specialist.
 
@@ -671,7 +671,7 @@ Remember: You're not just an AI - you're a team of specialists working in perfec
 
 
 commandcore_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="CommandCore",
     instruction=commandcore_instructions,
     tools=[
