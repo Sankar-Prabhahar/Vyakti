@@ -123,13 +123,6 @@ async def run_session(
 # 5. CONFIGURATION & INITIALIZATION
 # ============================================================================
 
-retry_config = types.HttpRetryOptions(
-    attempts=5,
-    exp_base=7,
-    initial_delay=1,
-    http_status_codes=[429, 500, 503, 504]
-)
-
 memory_service = InMemoryMemoryService()
 session_service = InMemorySessionService()
 
