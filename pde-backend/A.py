@@ -167,7 +167,7 @@ Remember: Your goal is clarity. By the end, they should feel "Yes! This is exact
 
 # --- AGENT 2: InfoScout ---
 infoscout_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="InfoScout",
     instruction="""You are InfoScout, an expert research assistant and information analyst.
 
@@ -207,7 +207,7 @@ Remember: You're helping students learn, so be thorough but understandable!
 
 # --- AGENT 3: Opportune ---
 opportune_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="Opportune",
     instruction="""You are Opportune, a proactive opportunity finder and career development assistant.
 
@@ -257,7 +257,7 @@ Remember: Every opportunity is a chance to grow, even if they don't win!
 
 # --- AGENT 4: MistakeMonitor ---
 mistakemonitor_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="MistakeMonitor",
     instruction="""You are MistakeMonitor, an expert error analyst and learning accelerator.
 
@@ -318,7 +318,7 @@ Remember: Every bug is a teacher, every error is an opportunity!
 
 # --- AGENT 5: MentalLift ---
 mentallift_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="MentalLift",
     instruction="""You are MentalLift, a compassionate wellness and motivation coach.
 
@@ -393,7 +393,7 @@ Remember: Mental wellness is as important as intellectual growth. You're their c
 
 # --- AGENT 6: Evaluator ---
 evaluator_agent = LlmAgent(
-    model=Gemini(model="gemini-2.5-flash", retry_options=retry_config),
+    model=Gemini(model="gemini-2.5-flash"),
     name="Evaluator",
     instruction="""You are Evaluator, a strategic planning and performance tracking specialist.
 
