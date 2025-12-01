@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "google-adk", "python-dotenv"], check=False)
-print("✅ Installation complete!")
+print("Installation complete!")
 
 # ============================================================================
 # 2. SETUP GEMINI API KEY
@@ -31,7 +31,7 @@ try:
     from kaggle_secrets import UserSecretsClient
     GOOGLE_API_KEY = UserSecretsClient().get_secret("GOOGLE_API_KEY")
     os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-    print("✅ Gemini API key setup complete! (from Kaggle Secrets)")
+    print("Gemini API key setup complete! (from Kaggle Secrets)")
 except Exception:
     GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
 
@@ -76,34 +76,34 @@ async def run_session(
             user_id=USER_ID,
             session_id=session_id
         )
-        print("✅ New session created")
+        print("New session created")
     except Exception:
         session = session_service.get_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=session_id
         )
-        print("✅ Retrieved existing session")
+        print("Retrieved existing session")
 
     if isinstance(user_queries, str):
         user_queries = [user_queries]
 
     for query in user_queries:
-        print(f"\n👤 User: {query}")
+        print(f"\nUser: {query}")
         query_content = types.Content(
             role="user",
             parts=[types.Part(text=query)]
         )
 
         full_response_text = ""
-        print("🤖 Agent: ", end="")
+        print("Agent: ", end="")
 
         async for event in runner_instance.run_async(
             user_id=USER_ID,
             session_id=session.id,
             new_message=query_content
         ):
-            # Collect any streaming text
+
             if (
                 event.content
                 and event.content.parts
@@ -112,7 +112,7 @@ async def run_session(
                 chunk = event.content.parts[0].text
                 full_response_text += chunk
 
-        # After the loop, print whatever was collected
+
         if full_response_text.strip():
             print(full_response_text.strip())
         else:
@@ -129,7 +129,7 @@ session_service = InMemorySessionService()
 APP_NAME = "PersonalDevelopmentEcosystem"
 USER_ID = "student_user"
 
-print("✅ Configuration and services initialized!")
+print("Configuration and services initialized!")
 
 # ============================================================================
 # 6. DEFINE ALL SPECIALIST AGENTS
@@ -215,11 +215,11 @@ YOUR MISSION:
 Help students discover and seize opportunities that match their interests, skills, and goals.
 
 WHAT YOU SEARCH FOR:
-1. 💼 Internships & Jobs (entry-level, student positions)
-2. 🏅 Competitions (Kaggle, hackathons, coding contests, science fairs)
-3. 🎓 Scholarships & Educational Programs
-4. 🔬 Research Opportunities
-5. 📚 Relevant Courses & Certifications
+1. Internships & Jobs (entry-level, student positions)
+2. Competitions (Kaggle, hackathons, coding contests, science fairs)
+3. Scholarships & Educational Programs
+4. Research Opportunities
+5. Relevant Courses & Certifications
 
 YOUR PROCESS:
 1. Analyze the user's stated interests and skills
@@ -326,12 +326,12 @@ YOUR MISSION:
 Support students' emotional well-being, maintain motivation, and build resilience through challenges.
 
 WHAT YOU PROVIDE:
-1. 🧠 **Emotional Support**: Listen, validate, and offer perspective
-2. 💪 **Resilience Building**: Help bounce back from failures
-3. 🎯 **Motivation Coaching**: Keep energy and focus high
-4. 🎉 **Celebration**: Recognize progress and wins
-5. 🧘 **Stress Management**: Techniques for managing anxiety/pressure
-6. 📈 **Pattern Recognition**: Track emotional patterns and well-being trends
+1. **Emotional Support**: Listen, validate, and offer perspective
+2. **Resilience Building**: Help bounce back from failures
+3. **Motivation Coaching**: Keep energy and focus high
+4. **Celebration**: Recognize progress and wins
+5. **Stress Management**: Techniques for managing anxiety/pressure
+6. **Pattern Recognition**: Track emotional patterns and well-being trends
 
 YOUR APPROACH:
 
@@ -700,8 +700,8 @@ commandcore_runner = Runner(
     memory_service=memory_service
 )
 
-print("✅ CommandCore (orchestrator) created and configured!")
-print("\n📋 Agent Team Roster:")
+print("CommandCore (orchestrator) created and configured!")
+print("\nAgent Team Roster:")
 print("=" * 70)
 for i, agent in enumerate(commandcore_agent.sub_agents, 1):
     print(f"   {i}. {agent.name}")
@@ -711,7 +711,7 @@ print("=" * 70)
 # 9. FINAL TEST - COMPLETE MULTI-AGENT ECOSYSTEM
 # ============================================================================
 
-print("\n🎯 COMPREHENSIVE MULTI-AGENT SYSTEM TEST")
+print("\nCOMPREHENSIVE MULTI-AGENT SYSTEM TEST")
 print("=" * 70)
 
 async def run_final_test():
@@ -728,7 +728,7 @@ async def run_final_test():
         session_id="ecosystem_comprehensive_test"
     )
     print("\n" + "=" * 70)
-    print("✅ MULTI-AGENT ECOSYSTEM TEST COMPLETE!")
+    print("MULTI-AGENT ECOSYSTEM TEST COMPLETE!")
     print("=" * 70)
 
 if __name__ == "__main__":
