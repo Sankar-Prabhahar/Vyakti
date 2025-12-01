@@ -71,14 +71,14 @@ async def run_session(
 
     # Create or retrieve existing session
     try:
-        session = await session_service.create_session(
+        session = session_service.create_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=session_id
         )
         print("✅ New session created")
     except Exception:
-        session = await session_service.get_session(
+        session = session_service.get_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=session_id
@@ -124,22 +124,7 @@ async def run_session(
 # ============================================================================
 
 memory_service = InMemoryMemoryService()
-
-# Wrapper to make InMemorySessionService compatible with async Runner
-class AsyncInMemorySessionService(InMemorySessionService):
-    async def create_session(self, *args, **kwargs):
-        return super().create_session(*args, **kwargs)
-
-    async def get_session(self, *args, **kwargs):
-        return super().get_session(*args, **kwargs)
-
-    async def list_sessions(self, *args, **kwargs):
-        return super().list_sessions(*args, **kwargs)
-
-    async def delete_session(self, *args, **kwargs):
-        return super().delete_session(*args, **kwargs)
-
-session_service = AsyncInMemorySessionService()
+session_service = InMemorySessionService()
 
 APP_NAME = "PersonalDevelopmentEcosystem"
 USER_ID = "student_user"

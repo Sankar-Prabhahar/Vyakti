@@ -28,17 +28,17 @@ class ChatResponse(BaseModel):
 async def run_single_turn(message: str, session_id: str) -> str:
     # minimal version of run_session that returns text instead of printing
     from google.genai import types
-    print("DEBUG: Running ASYNC wrapper version of run_single_turn (WITH await)")
+    print("DEBUG: Running SYNC version of run_single_turn (NO await)")
 
     try:
         try:
-            session = await session_service.create_session(
+            session = session_service.create_session(
                 app_name=APP_NAME,
                 user_id=USER_ID,
                 session_id=session_id,
             )
         except Exception:
-            session = await session_service.get_session(
+            session = session_service.get_session(
                 app_name=APP_NAME,
                 user_id=USER_ID,
                 session_id=session_id,
