@@ -546,13 +546,13 @@ async def query_specialist(runner_instance: Runner, prompt: str) -> str:
     """Helper to query a specialist agent and get the text response."""
     sub_session_id = f"{USER_ID}-{runner_instance.agent.name}"
     try:
-        session = await session_service.create_session(
+        session = session_service.create_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=sub_session_id
         )
     except Exception:
-        session = await session_service.get_session(
+        session = session_service.get_session(
             app_name=APP_NAME,
             user_id=USER_ID,
             session_id=sub_session_id
