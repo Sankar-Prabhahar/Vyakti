@@ -124,7 +124,22 @@ async def run_session(
 # ============================================================================
 
 memory_service = InMemoryMemoryService()
-session_service = InMemorySessionService()
+
+# Wrapper to make InMemorySessionService compatible with async Runner
+class AsyncInMemorySessionService(InMemorySessionService):
+    async def create_session(self, app_name: str, user_id: str, session_id: str):
+        return super().create_session(app_name, user_id, session_id)
+
+    async def get_session(self, app_name: str, user_id: str, session_id: str):
+        return super().get_session(app_name, user_id, session_id)
+
+    async def list_sessions(self, app_name: str, user_id: str):
+        return super().list_sessions(app_name, user_id)
+
+    async def delete_session(self, app_name: str, user_id: str, session_id: str):
+        return super().delete_session(app_name, user_id, session_id)
+
+session_service = AsyncInMemorySessionService()
 
 APP_NAME = "PersonalDevelopmentEcosystem"
 USER_ID = "student_user"
